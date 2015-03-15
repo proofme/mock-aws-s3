@@ -311,4 +311,13 @@ describe('S3', function () {
 		})
 	});
 
+	it('should be able to create a bucket/directory', function(done) {
+		var bucket = __dirname + '/testbucket';
+		s3.createBucket({Bucket: bucket}, function(err, data) {
+			expect(err).to.be.null;
+			expect(fs.existsSync(bucket)).to.be.equal(true);
+			fs.rmdirSync(bucket);
+			done();
+		})
+	});
 });
