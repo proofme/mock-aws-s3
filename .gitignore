@@ -11,6 +11,9 @@ pids
 logs
 results
 
+.idea/
+.idea/workspace.xml
+
 npm-debug.log
 
 node_modules

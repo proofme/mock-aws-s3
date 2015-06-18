@@ -264,6 +264,19 @@ describe('S3', function () {
 		});
 	});
 
+	it('should get a file when specify baseDir', function (done) {
+		s3.baseDir = __dirname;
+
+		s3.getObject({Key: 'sea/yo copy 10.txt', Bucket: 'local/otters'}, function (err, data) {
+
+			expect(err).to.be.null;
+			expect(data.ETag).to.equal('"d41d8cd98f00b204e9800998ecf8427e"');
+			expect(data.Key).to.equal('sea/yo copy 10.txt');
+			s3.baseDir = "";
+			done();
+		});
+	});
+
 	it('should get a file and its content', function (done) {
 
 		s3.getObject({Key: 'animal.txt', Bucket: __dirname + '/local/otters'}, function (err, data) {
